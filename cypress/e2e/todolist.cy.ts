@@ -5,13 +5,13 @@ describe("todolist app", () => {
 
     it("fetches todos and displays a message if there are no todos", () => {
         cy.contains("TODO");
-        cy.contains("There's nothing to do.");
+        cy.contains("There's nothing here.");
     });
 
     it("adds a new todo to the todolist", () => {
         cy.get('[data-cy="todo-input"]').type("New todo");
         cy.get('[data-cy="todo-submit"]').click();
-        cy.get('[data-cy="todos"]').should("contain", "New todo");
+        cy.get('[data-cy="todolist"]').should("contain", "New todo");
         cy.get('[data-cy="todo-input"]').should("have.value", "");
     });
 });
