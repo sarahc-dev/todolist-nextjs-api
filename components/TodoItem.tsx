@@ -14,7 +14,9 @@ export default function TodoItem({ todo, editTodo }: TodoItemProps) {
     return (
         <li className="flex">
             <Checkbox complete={todo.completed} toggleCheckbox={handleToggle} />
-            <p className={`${todo.completed && "line-through"}`}>{todo.title}</p>
+            <p onClick={handleToggle} className={`${todo.completed && "line-through"}`}>
+                {todo.title}
+            </p>
         </li>
     );
 }
