@@ -15,14 +15,14 @@ describe("<TodoList />", () => {
     ];
 
     it("displays a list of todos", () => {
-        cy.mount(<TodoList items={todoItems} />);
+        cy.mount(<TodoList items={todoItems} editTodo={cy.stub()} />);
         cy.get("ul").children().should("have.length", 2);
         cy.get("li:first").contains("New todo");
         cy.get("li:last").contains("Feed cat");
     });
 
     it("displays a message when there are no todos", () => {
-        cy.mount(<TodoList items={[]} />);
+        cy.mount(<TodoList items={[]} editTodo={cy.stub()} />);
         cy.contains("There's nothing here.");
     });
 });

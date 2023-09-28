@@ -3,3 +3,5 @@ export interface ITodo {
     title: string;
     completed: boolean;
 }
+
+export type EditTodoFunction = (id: string, newValue: { [key: string]: string | boolean }) => void;

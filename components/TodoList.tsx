@@ -1,10 +1,12 @@
-import { ITodo } from "@/types";
+import TodoItem from "./TodoItem";
+import { ITodo, EditTodoFunction } from "@/types";
 
 interface TodoListProps {
     items: ITodo[];
+    editTodo: EditTodoFunction;
 }
 
-export default function TodoList({ items }: TodoListProps) {
+export default function TodoList({ items, editTodo }: TodoListProps) {
     if (items.length === 0) {
         return <p>There&apos;s nothing here.</p>;
     }
@@ -12,7 +14,7 @@ export default function TodoList({ items }: TodoListProps) {
     return (
         <ul data-cy="todolist" className="mt-4">
             {items.map(item => (
-                <li key={item._id}>{item.title}</li>
+                <TodoItem key={item._id} todo={item} editTodo={editTodo} />
             ))}
         </ul>
     );
