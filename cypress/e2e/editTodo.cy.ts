@@ -31,4 +31,11 @@ describe("edit a todo", () => {
         cy.get('[data-cy="confirm"]').click();
         cy.get('[data-cy="todolist"]').should("contain", "edited");
     });
+
+    it("deletes a todo", () => {
+        cy.get('[data-cy="todo-input"]').type("To delete");
+        cy.get('[data-cy="todo-submit"]').click();
+        cy.get('[data-cy="delete"]').click();
+        cy.contains("There's nothing here.");
+    });
 });

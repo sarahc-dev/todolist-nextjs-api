@@ -5,3 +5,5 @@ export interface ITodo {
 }
 
 export type EditTodoFunction = (id: string, newValue: { [key: string]: string | boolean }) => void;
+
+export type DeleteTodoFunction = (id: string) => void;

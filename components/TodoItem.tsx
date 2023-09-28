@@ -3,14 +3,16 @@ import Checkbox from "./Checkbox";
 import IconButton from "./IconButton";
 import EditTodo from "./EditTodo";
 import { BsPencil } from "react-icons/bs";
-import { ITodo, EditTodoFunction } from "@/types";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { ITodo, EditTodoFunction, DeleteTodoFunction } from "@/types";
 
 interface TodoItemProps {
     todo: ITodo;
     editTodo: EditTodoFunction;
+    deleteTodo: DeleteTodoFunction;
 }
 
-export default function TodoItem({ todo, editTodo }: TodoItemProps) {
+export default function TodoItem({ todo, editTodo, deleteTodo }: TodoItemProps) {
     const [editMode, setEditMode] = useState<boolean>(false);
 
     const handleToggleCompleted = () => {
@@ -20,6 +22,10 @@ export default function TodoItem({ todo, editTodo }: TodoItemProps) {
     const handleConfirmEdit = (editedTodo: string) => {
         editTodo(todo._id, { title: editedTodo });
         setEditMode(false);
+    };
+
+    const handleDeleteTodo = () => {
+        deleteTodo(todo._id);
     };
 
     return (
@@ -36,6 +42,7 @@ export default function TodoItem({ todo, editTodo }: TodoItemProps) {
                     <IconButton action="edit" Icon={BsPencil} handleClick={() => setEditMode(true)} />
                 </>
             )}
+            <IconButton action="delete" Icon={RiDeleteBin6Line} handleClick={handleDeleteTodo} />
         </li>
     );
 }
