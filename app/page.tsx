@@ -1,12 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TodoForm from "@/components/TodoForm";
 import TodoList from "@/components/TodoList";
-import { ITodo, EditTodoFunction, DeleteTodoFunction } from "@/types";
+import FilterTodos from "@/components/FilterTodos";
+import { ITodo, EditTodoFunction, DeleteTodoFunction, filter } from "@/types";
 
 export default function Home() {
     const [todos, setTodos] = useState<ITodo[]>([]);
+    const [filteredTodos, setFilteredTodos] = useState<ITodo[]>([]);
+    const [activeFilter, setActiveFilter] = useState<filter>("all");
+
+    useEffect(() => {
+        if (activeFilter === "all") {
+            setFilteredTodos(todos);
+        } else if (activeFilter === "completed") {
+            const completedTodos = todos.filter(todo => todo.completed === true);
+            setFilteredTodos(completedTodos);
+        } else {
+            const incompleteTodos = todos.filter(todo => todo.completed !== true);
+            setFilteredTodos(incompleteTodos);
+        }
+    }, [todos, activeFilter]);
 
     const addTodo = (newTodo: string) => {
         const createdTodo = { _id: Math.random().toString(), title: newTodo, completed: false };
@@ -25,7 +40,8 @@ export default function Home() {
         <main className="flex min-h-screen flex-col items-center p-24">
             <h1>TODO</h1>
             <TodoForm onSubmit={addTodo} />
-            <TodoList items={todos} editTodo={editTodo} deleteTodo={deleteTodo} />
+            <TodoList items={filteredTodos} editTodo={editTodo} deleteTodo={deleteTodo} />
+            <FilterTodos activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
         </main>
     );
 }
