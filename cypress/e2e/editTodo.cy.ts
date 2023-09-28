@@ -22,4 +22,13 @@ describe("edit a todo", () => {
         cy.get('[data-cy="checkbox"]').should("have.descendants", "svg");
         cy.get('[data-cy="todolist"] li:first p').should("have.class", "line-through");
     });
+
+    it("edits the content of a todo", () => {
+        cy.get('[data-cy="todo-input"]').type("To edit");
+        cy.get('[data-cy="todo-submit"]').click();
+        cy.get('[data-cy="edit"]').click();
+        cy.get('[data-cy="todo-edit"]').type(" edited");
+        cy.get('[data-cy="confirm"]').click();
+        cy.get('[data-cy="todolist"]').should("contain", "edited");
+    });
 });

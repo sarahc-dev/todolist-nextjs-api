@@ -10,5 +10,22 @@ describe("<TodoItem />", () => {
     it("displays the todo item with correct components", () => {
         cy.mount(<TodoItem todo={todo} editTodo={cy.stub()} />);
         cy.get("li").should("include.text", "New todo");
+        cy.get('[data-cy="checkbox"]').should("exist");
+        cy.get('[data-cy="edit"]').should("exist");
+    });
+
+    it("calls the editTodo callback when text is clicked", () => {
+        const editTodo = cy.stub().as("editTodo");
+        cy.mount(<TodoItem todo={todo} editTodo={editTodo} />);
+        cy.get("li p").click();
+        cy.get("@editTodo").should("have.been.calledWith", "1", { completed: true });
+    });
+
+    it("displays the correct components when edit button is clicked", () => {
+        cy.mount(<TodoItem todo={todo} editTodo={cy.stub()} />);
+        cy.get('[data-cy="edit"]').click();
+        cy.get('[data-cy="confirm"]').should("exist");
+        cy.get('[data-cy="decline"]').should("exist");
+        cy.get('[data-cy="edit"]').should("not.exist");
     });
 });
