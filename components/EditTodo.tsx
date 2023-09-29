@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, Dispatch, SetStateAction } from "react";
 import IconButton from "./IconButton";
-import { RiCloseFill } from "react-icons/ri";
 import { FaCheck } from "react-icons/fa6";
+import { MdOutlineClose } from "react-icons/md";
 
 interface EditTodoProps {
     title: string;
@@ -37,11 +37,11 @@ export default function EditTodo({ title, confirmEdit, setEditMode }: EditTodoPr
 
     return (
         <>
-            <input type="text" data-cy="todo-edit" ref={editRef} value={editedTodo} onChange={handleChange} />
+            <input type="text" data-cy="todo-edit" ref={editRef} value={editedTodo} onChange={handleChange} className="flex-1 mr-4 px-2" />
 
-            <div className="flex">
-                <IconButton action="confirm" Icon={FaCheck} handleClick={handleConfirmEditClick} />
-                <IconButton action="decline" Icon={RiCloseFill} handleClick={handleDeclineEditClick} />
+            <div className="flex gap-1">
+                <IconButton action="confirm" Icon={FaCheck} color="bg-green-600 hover:bg-green-700" handleClick={handleConfirmEditClick} />
+                <IconButton action="decline" Icon={MdOutlineClose} color="bg-red-700 hover:bg-red-800" handleClick={handleDeclineEditClick} />
             </div>
             {isError && <small>Cannot be blank.</small>}
         </>

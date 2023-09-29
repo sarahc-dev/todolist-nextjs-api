@@ -24,9 +24,9 @@ export default function TodoForm({ onSubmit }: TodoFormProps) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" data-cy="todo-input" value={newTodo} onChange={handleChange} className="border-b" />
-            <button type="submit" data-cy="todo-submit">
+        <form onSubmit={handleSubmit} className="w-full max-w-lg flex my-4">
+            <input type="text" data-cy="todo-input" value={newTodo} onChange={handleChange} placeholder="Create a new todo..." className="border-b mr-3 px-2 flex-1" />
+            <button type="submit" data-cy="todo-submit" className="bg-blue-600 text-white px-3 py-1 rounded-sm hover:bg-blue-900 font-semibold">
                 Add
             </button>
             {showError && (

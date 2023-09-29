@@ -29,20 +29,20 @@ export default function TodoItem({ todo, editTodo, deleteTodo }: TodoItemProps) 
     };
 
     return (
-        <li className="flex">
+        <li className="flex mb-3">
             <Checkbox complete={todo.completed} toggleCheckbox={handleToggleCompleted} />
 
             {editMode ? (
                 <EditTodo title={todo.title} confirmEdit={handleConfirmEdit} setEditMode={setEditMode} />
             ) : (
                 <>
-                    <p onClick={handleToggleCompleted} className={`${todo.completed && "line-through"} mr-3`}>
+                    <p onClick={handleToggleCompleted} className={`${todo.completed && "line-through"} mr-4 flex-1`}>
                         {todo.title}
                     </p>
-                    <IconButton action="edit" Icon={BsPencil} handleClick={() => setEditMode(true)} />
+                    <IconButton action="edit" Icon={BsPencil} color="bg-orange-400 hover:bg-orange-500" handleClick={() => setEditMode(true)} />
                 </>
             )}
-            <IconButton action="delete" Icon={RiDeleteBin6Line} handleClick={handleDeleteTodo} />
+            <IconButton action="delete" Icon={RiDeleteBin6Line} color="bg-red-700 hover:bg-red-800" handleClick={handleDeleteTodo} />
         </li>
     );
 }

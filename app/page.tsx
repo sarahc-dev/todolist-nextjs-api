@@ -57,13 +57,13 @@ export default function Home() {
     };
 
     return (
-        <main className="flex min-h-screen flex-col items-center p-24">
-            <h1>TODO</h1>
+        <main className="flex min-h-screen flex-col items-center py-20 px-10">
+            <h1 className="font-bold text-2xl">TODO</h1>
             <TodoForm onSubmit={handleAddTodo} />
 
             <ErrorMessage errorMessage={errorMessage} />
 
-            {isLoading && <Oval height={24} width={24} color="#4fa94d" ariaLabel="oval-loading" />}
+            {isLoading && <Oval height={24} width={24} color="blue" secondaryColor="#d5d5ff" ariaLabel="oval-loading" />}
 
             {!isLoading && !errorMessage?.includes("Error fetching todos") && <TodoList items={filteredTodos} editTodo={handleEditTodo} deleteTodo={handleDeleteTodo} />}
 

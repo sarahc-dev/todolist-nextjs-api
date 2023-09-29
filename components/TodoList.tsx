@@ -13,7 +13,7 @@ export default function TodoList({ items, editTodo, deleteTodo }: TodoListProps)
     }
 
     return (
-        <ul data-cy="todolist" className="mt-4">
+        <ul data-cy="todolist" className="mt-4 w-full max-w-lg">
             {items.map(item => (
                 <TodoItem key={item._id} todo={item} editTodo={editTodo} deleteTodo={deleteTodo} />
             ))}
