@@ -1,6 +1,6 @@
 # Todolist frontend
 
-I want to make a simple full-stack CRUD app so that I can focus on TDD, process and understanding. In the future, I will different versions of this same basic app when learning and practicing new technologies on either frontend or backend.
+I want to make a simple full-stack CRUD app so that I can focus on TDD, understanding TypeScript and process.
 
 See [https://github.com/sarahc-dev/todolist-collection](https://github.com/sarahc-dev/todolist-collection) for a description of the app, my original planning and wireframes.
 
@@ -59,6 +59,10 @@ npm run cypress:open
 npx cypress run --e2e
 ```
 
+## App preview
+
+![Gif of app](images/todolist.gif)
+
 ## API
 
 In order for this frontend to function correctly, the backend API must respond to the following requests:
@@ -83,7 +87,7 @@ Response:
 ### Add todo
 
 POST [http://localhost:8080/api/todos](http://localhost:8080/api/todos)  
-Request Body: { title: "todo" }  
+Request Body: { title: "Added todo" }  
 Response:
 
 ```plain
@@ -102,3 +106,17 @@ Request Body: { key: value } to update
 ### Delete todo
 
 DELETE [http://localhost:8080/api/todos/{id}](http://localhost:8080/api/todos/{id})
+
+## Process
+
+I began using create-next-app to set up the project using Next.js, TypeScript and TailwindCSS. I set up Cypress and started with my first e2e test. I then created a test for the functionality of adding a todo and with this failing test, I dipped out to create component tests and test drive the TodoForm and TodoList components before putting these together and seeing the e2e test pass. I repeated this for the other functionality of editing and deleting todos.
+
+When I had a fully functioning app, I then created a useTodoApi hook and created the fetch requests to connect my frontend to my backend API. I refactored the code and the tests to work with the API.
+
+Once the functionality was working, I added a small amount of CSS to complete the app.
+
+## Learnings
+
+It was interesting how much more I considered the structure of each component using strictly TDD and how my components are much smaller than I might have created in the past to make testing easier. It was also a challenge focusing on tdd and also on the bigger picture of how all the components needed to work together and how to manage state across the app.
+
+I debated how far to take the testing. I did try to use Jest and Testing Library to unit test the hook but ran into trouble using Cypress and Jest together with TypeScript. I also came across an argument not to do this - there is very little business logic to test once I had mocked fetch.Ultimately I decided my e2e tests would be sufficient.

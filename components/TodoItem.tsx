@@ -36,7 +36,7 @@ export default function TodoItem({ todo, editTodo, deleteTodo }: TodoItemProps) 
                 <EditTodo title={todo.title} confirmEdit={handleConfirmEdit} setEditMode={setEditMode} />
             ) : (
                 <>
-                    <p onClick={handleToggleCompleted} className={`${todo.completed && "line-through"} mr-4 flex-1`}>
+                    <p onClick={handleToggleCompleted} className={`${todo.completed && "line-through"} mr-4 flex-1 cursor-pointer`}>
                         {todo.title}
                     </p>
                     <IconButton action="edit" Icon={BsPencil} color="bg-orange-400 hover:bg-orange-500" handleClick={() => setEditMode(true)} />
