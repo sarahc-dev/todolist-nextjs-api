@@ -18,7 +18,7 @@ For this version of the frontend, I am using:
 mkdir todolist
 cd todolist
 
-git clone <url> frontend
+git clone https://github.com/sarahc-dev/todolist-frontend-nextjs.git frontend
 cd frontend
 npm install
 ```
@@ -117,6 +117,6 @@ Once the functionality was working, I added a small amount of CSS to complete th
 
 ## Learnings
 
-It was interesting how much more I considered the structure of each component using strictly TDD and how my components are much smaller than I might have created in the past to make testing easier. It was also a challenge focusing on tdd and also on the bigger picture of how all the components needed to work together and how to manage state across the app.
+It was interesting how much more I considered the structure of each component using strictly TDD and how my components are much smaller than I might have created in the past to make testing easier. It was also a challenge focusing on tdd and also on the bigger picture of how all the components needed to work together and how to manage state across the app so each component is rerendering when it should.
 
-I debated how far to take the testing. I did try to use Jest and Testing Library to unit test the hook but ran into trouble using Cypress and Jest together with TypeScript. I also came across an argument not to do this - there is very little business logic to test once I had mocked fetch.Ultimately I decided my e2e tests would be sufficient.
+I debated how far to take the testing. I did try to use Jest and Testing Library to unit test the hook but ran into trouble using Cypress and Jest together with TypeScript. I also came across an argument not to do this - there is very little business logic to test once I had mocked fetch. Ultimately I decided my e2e tests would be sufficient.
