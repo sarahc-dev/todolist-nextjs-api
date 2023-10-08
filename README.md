@@ -14,12 +14,8 @@ For this version of the frontend, I am using:
 ## Setup
 
 ```bash
-# Set up folder to test full app
-mkdir todolist
-cd todolist
-
-git clone https://github.com/sarahc-dev/todolist-frontend-nextjs.git frontend
-cd frontend
+git clone https://github.com/sarahc-dev/todolist-frontend-nextjs.git
+cd todolist-frontend-nextjs
 npm install
 ```
 
@@ -37,20 +33,19 @@ To setup the full-stack app:
 
 ```bash
 # Install and run the Express backend
-cd ..
-git clone https://github.com/sarahc-dev/todolist-collection.git api
+git clone https://github.com/sarahc-dev/todolist-collection.git
+cd todolist-collection
 cd api
 npm install
 
-# Run the test server in a new terminal
+# Run the test server
 npm run start:test
 ```
 
 To run e2e tests:
 
 ```bash
-# In a terminal run frontend server
-cd frontend
+# In another terminal cd to the frontend project folder
 npm run dev
 
 # In new terminal run tests
@@ -62,6 +57,12 @@ npx cypress run --e2e
 ## App preview
 
 ![Gif of app](images/todolist.gif)
+
+## Original Component Design
+
+This was my initial plan for the component breakdown with consideration of how I will make testing each component easier. It may change, particularly in terms of the editing functionality when I begin.
+
+![component breakdown](images/component-breakdown.png)
 
 ## API
 
@@ -117,6 +118,6 @@ Once the functionality was working, I added a small amount of CSS to complete th
 
 ## Learnings
 
-It was interesting how much more I considered the structure of each component using strictly TDD and how my components are much smaller than I might have created in the past to make testing easier. It was also a challenge focusing on tdd and also on the bigger picture of how all the components needed to work together and how to manage state across the app so each component is rerendering when it should.
+It was interesting how much more I considered the structure of each component using strictly TDD and how my components are much smaller than I might have created in the past to make testing easier. It was also a challenge focusing on tdd and also on the bigger picture of how all the components needed to work together and how to manage state across the app so each component is updating its state when it should.
 
 I debated how far to take the testing. I did try to use Jest and Testing Library to unit test the hook but ran into trouble using Cypress and Jest together with TypeScript. I also came across an argument not to do this - there is very little business logic to test once I had mocked fetch. Ultimately I decided my e2e tests would be sufficient.
