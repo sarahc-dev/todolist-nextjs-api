@@ -108,6 +108,11 @@ Request Body: { key: value } to update
 
 DELETE [http://localhost:8080/api/todos/{id}](http://localhost:8080/api/todos/{id})
 
+### Delete all todos
+
+Required to run e2e tests
+POST [http://localhost:8080/api/test/deleteAll](http://localhost:8080/api/test/deleteAll)
+
 ## Process
 
 I began using create-next-app to set up the project using Next.js, TypeScript and TailwindCSS. I set up Cypress and started with my first e2e test. I then created a test for the functionality of adding a todo and with this failing test, I dipped out to create component tests and test drive the TodoForm and TodoList components before putting these together and seeing the e2e test pass. I repeated this for the other functionality of editing and deleting todos.
