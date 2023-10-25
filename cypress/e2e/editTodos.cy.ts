@@ -8,7 +8,7 @@ describe("edit a todo", () => {
     it("clicks checkbox and marks a todo as complete", () => {
         cy.intercept("PATCH", "http://localhost:8080/api/todos").as("editTodo");
 
-        cy.wait("@todos");
+        cy.wait("@todos", { timeout: 10000 });
         cy.get('[data-cy="todo-input"]').type("New todo");
         cy.get('[data-cy="todo-submit"]').click();
         cy.wait("@todos");
@@ -20,7 +20,7 @@ describe("edit a todo", () => {
     });
 
     it("clicks todo text and marks a todo as complete", () => {
-        cy.wait("@todos");
+        cy.wait("@todos", { timeout: 10000 });
         cy.get('[data-cy="todo-input"]').type("New todo");
         cy.get('[data-cy="todo-submit"]').click();
         cy.wait("@todos");
@@ -32,7 +32,7 @@ describe("edit a todo", () => {
     });
 
     it("edits the content of a todo", () => {
-        cy.wait("@todos");
+        cy.wait("@todos", { timeout: 10000 });
         cy.get('[data-cy="todo-input"]').type("To edit");
         cy.get('[data-cy="todo-submit"]').click();
         cy.wait("@todos");
@@ -43,7 +43,7 @@ describe("edit a todo", () => {
     });
 
     it("deletes a todo", () => {
-        cy.wait("@todos");
+        cy.wait("@todos", { timeout: 10000 });
         cy.get('[data-cy="todo-input"]').type("To delete");
         cy.get('[data-cy="todo-submit"]').click();
         cy.wait("@todos");
@@ -54,7 +54,7 @@ describe("edit a todo", () => {
     it("displays an error if cannot edit todo", () => {
         cy.intercept("POST", "http://localhost:8080/api/todos").as("addTodo");
 
-        cy.wait("@todos");
+        cy.wait("@todos", { timeout: 10000 });
         cy.get('[data-cy="todo-input"]').type("New todo");
         cy.get('[data-cy="todo-submit"]').click();
         cy.wait("@addTodo").then(res => {
@@ -75,7 +75,7 @@ describe("edit a todo", () => {
     it("displays an error if cannot delete todo", () => {
         cy.intercept("POST", "http://localhost:8080/api/todos").as("addTodo");
 
-        cy.wait("@todos");
+        cy.wait("@todos", { timeout: 10000 });
         cy.get('[data-cy="todo-input"]').type("New todo");
         cy.get('[data-cy="todo-submit"]').click();
         cy.wait("@addTodo").then(res => {

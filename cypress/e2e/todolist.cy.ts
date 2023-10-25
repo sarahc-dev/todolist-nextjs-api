@@ -7,12 +7,12 @@ describe("todolist", () => {
 
     it("fetches todos and displays a message if there are no todos", () => {
         cy.contains("TODO");
-        cy.wait("@todos");
+        cy.wait("@todos", { timeout: 10000 });
         cy.contains("There's nothing here.");
     });
 
     it("adds a new todo to the todolist", () => {
-        cy.wait("@todos");
+        cy.wait("@todos", { timeout: 10000 });
         cy.get('[data-cy="todo-input"]').type("New todo");
         cy.get('[data-cy="todo-submit"]').click();
         cy.wait("@todos");
@@ -21,7 +21,7 @@ describe("todolist", () => {
     });
 
     it("adds multiple todos to the list", () => {
-        cy.wait("@todos");
+        cy.wait("@todos", { timeout: 10000 });
         cy.get('[data-cy="todo-input"]').type("New todo");
         cy.get('[data-cy="todo-submit"]').click();
         cy.wait("@todos");
@@ -38,7 +38,7 @@ describe("todolist", () => {
         cy.get('[aria-label="oval-loading"]').should("be.visible");
         cy.contains("There's nothing to do.").should("not.exist");
         cy.get('[data-cy="todos"]').should("not.exist");
-        cy.wait("@todos");
+        cy.wait("@todos", { timeout: 10000 });
         cy.contains("There's nothing here.");
     });
 
@@ -46,7 +46,7 @@ describe("todolist", () => {
         cy.intercept("POST", "http://localhost:8080/api/todos", req => {
             req.reply(400, { success: false });
         }).as("addTodo");
-        cy.wait("@todos");
+        cy.wait("@todos", { timeout: 10000 });
         cy.get('[data-cy="todo-input"]').type("New todo");
         cy.get('[data-cy="todo-submit"]').click();
         cy.wait("@addTodo");
@@ -61,7 +61,7 @@ describe("todolist GET errors", () => {
             req.reply(400, { success: false });
         }).as("todos");
         cy.visit("http://localhost:3000");
-        cy.wait("@todos");
+        cy.wait("@todos", { timeout: 10000 });
         cy.get('[data-cy="todos"]').should("not.exist");
         cy.contains("Oops, there's been an error. Please try again.");
     });

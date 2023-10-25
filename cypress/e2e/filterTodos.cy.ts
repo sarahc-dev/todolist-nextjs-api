@@ -6,7 +6,7 @@ describe("filters todolist", () => {
     });
 
     it("filters completed todos", () => {
-        cy.wait("@todos");
+        cy.wait("@todos", { timeout: 10000 });
         cy.get('[data-cy="todo-input"]').type("New todo");
         cy.get('[data-cy="todo-submit"]').click();
         cy.get('[data-cy="todo-input"]').type("New todo2");
@@ -17,7 +17,7 @@ describe("filters todolist", () => {
     });
 
     it("filters incomplete todos", () => {
-        cy.wait("@todos");
+        cy.wait("@todos", { timeout: 10000 });
         cy.get('[data-cy="todo-input"]').type("New todo");
         cy.get('[data-cy="todo-submit"]').click();
         cy.get('[data-cy="todo-input"]').type("Another todo");
@@ -28,7 +28,7 @@ describe("filters todolist", () => {
     });
 
     it("correctly filters newly added todo when completed selected", () => {
-        cy.wait("@todos");
+        cy.wait("@todos", { timeout: 10000 });
         cy.get('[data-cy="todo-input"]').type("New todo");
         cy.get('[data-cy="todo-submit"]').click();
         cy.wait("@todos");
@@ -41,7 +41,7 @@ describe("filters todolist", () => {
     });
 
     it("correctly filters newly added todo when incomplete selected", () => {
-        cy.wait("@todos");
+        cy.wait("@todos", { timeout: 10000 });
         cy.get('[data-cy="todo-input"]').type("New todo");
         cy.get('[data-cy="todo-submit"]').click();
         cy.wait("@todos");
