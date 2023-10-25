@@ -37,7 +37,7 @@ export default function EditTodo({ title, confirmEdit, setEditMode }: EditTodoPr
 
     return (
         <>
-            <input type="text" data-cy="todo-edit" ref={editRef} value={editedTodo} onChange={handleChange} className={`w-full mr-4 px-2 ${isError && "placeholder:text-red-500"}`} placeholder={isError ? "Cannot be blank" : ""} />
+            <input type="text" data-cy="todo-edit" ref={editRef} value={editedTodo} onChange={handleChange} className={`w-full mr-4 px-2 border-b ${isError && "placeholder:text-red-500"}`} placeholder={isError ? "Cannot be blank" : ""} />
 
             <div className="flex gap-1">
                 <IconButton action="confirm" Icon={FaCheck} color="bg-green-600 hover:bg-green-700" handleClick={handleConfirmEditClick} />
