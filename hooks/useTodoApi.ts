@@ -6,7 +6,7 @@ const useTodoApi = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-    const apiUrl = "http://localhost:8080/api/todos";
+    const apiUrl = "http://localhost:3000/api/todos";
 
     useEffect(() => {
         const fetchTodos = async () => {
