@@ -21,7 +21,7 @@ describe("<EditTodo />", () => {
         cy.get("input").clear();
         cy.get("[data-cy='confirm']").click();
         cy.get("@confirmEdit").should("not.have.been.called");
-        cy.contains("Cannot be blank.");
+        cy.get("input").should("have.attr", "placeholder", "Cannot be blank");
     });
 
     it("calls the setEditMode callback with false if edit declined", () => {
