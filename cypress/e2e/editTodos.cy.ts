@@ -1,12 +1,12 @@
 describe("edit a todo", () => {
     beforeEach(() => {
-        cy.intercept("http://localhost:8080/api/todos").as("todos");
-        cy.request("POST", "http://localhost:8080/api/test/deleteAll");
+        cy.intercept("http://localhost:3000/api/todos").as("todos");
+        cy.request("POST", "http://localhost:3000/api/test/deleteAll");
         cy.visit("http://localhost:3000");
     });
 
     it("clicks checkbox and marks a todo as complete", () => {
-        cy.intercept("PATCH", "http://localhost:8080/api/todos").as("editTodo");
+        cy.intercept("PATCH", "http://localhost:3000/api/todos").as("editTodo");
 
         cy.wait("@todos", { timeout: 10000 });
         cy.get('[data-cy="todo-input"]').type("New todo");
@@ -52,7 +52,7 @@ describe("edit a todo", () => {
     });
 
     it("displays an error if cannot edit todo", () => {
-        cy.intercept("POST", "http://localhost:8080/api/todos").as("addTodo");
+        cy.intercept("POST", "http://localhost:3000/api/todos").as("addTodo");
 
         cy.wait("@todos", { timeout: 10000 });
         cy.get('[data-cy="todo-input"]').type("New todo");
@@ -61,7 +61,7 @@ describe("edit a todo", () => {
             const id = res.response?.body._id;
             // cy.log("New todo id: ", id);
 
-            cy.intercept("PATCH", `http://localhost:8080/api/todos/${id}`, req => {
+            cy.intercept("PATCH", `http://localhost:3000/api/todos/${id}`, req => {
                 req.reply(400, { success: false });
             }).as("editTodo");
 
@@ -73,7 +73,7 @@ describe("edit a todo", () => {
     });
 
     it("displays an error if cannot delete todo", () => {
-        cy.intercept("POST", "http://localhost:8080/api/todos").as("addTodo");
+        cy.intercept("POST", "http://localhost:3000/api/todos").as("addTodo");
 
         cy.wait("@todos", { timeout: 10000 });
         cy.get('[data-cy="todo-input"]').type("New todo");
@@ -82,7 +82,7 @@ describe("edit a todo", () => {
             const id = res.response?.body._id;
             // cy.log("New todo id: ", id);
 
-            cy.intercept("DELETE", `http://localhost:8080/api/todos/${id}`, req => {
+            cy.intercept("DELETE", `http://localhost:3000/api/todos/${id}`, req => {
                 req.reply(400, { success: false });
             }).as("deleteTodo");
 

@@ -1,7 +1,7 @@
 describe("todolist", () => {
     beforeEach(() => {
-        cy.intercept("http://localhost:8080/api/todos").as("todos");
-        cy.request("POST", "http://localhost:8080/api/test/deleteAll");
+        cy.intercept("http://localhost:3000/api/todos").as("todos");
+        cy.request("POST", "http://localhost:3000/api/test/deleteAll");
         cy.visit("http://localhost:3000");
     });
 
@@ -43,7 +43,7 @@ describe("todolist", () => {
     });
 
     it("displays an error if cannot add todo", () => {
-        cy.intercept("POST", "http://localhost:8080/api/todos", req => {
+        cy.intercept("POST", "http://localhost:3000/api/todos", req => {
             req.reply(400, { success: false });
         }).as("addTodo");
         cy.wait("@todos", { timeout: 10000 });
@@ -57,7 +57,7 @@ describe("todolist", () => {
 
 describe("todolist GET errors", () => {
     it("displays an error if cannot fetch todos", () => {
-        cy.intercept("http://localhost:8080/api/todos", req => {
+        cy.intercept("http://localhost:3000/api/todos", req => {
             req.reply(400, { success: false });
         }).as("todos");
         cy.visit("http://localhost:3000");

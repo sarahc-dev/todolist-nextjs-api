@@ -11,6 +11,7 @@ export const getDbUrl = () => {
 };
 
 const connectMongoDB = async () => {
+    if (mongoose.connections[0]?.readyState === 1) return;
     try {
         await mongoose.connect(getDbUrl());
     } catch (error) {
